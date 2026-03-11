@@ -30,7 +30,7 @@ const SHORTS_VIDEOS = [
  * │             Trusted by leaders                                │
  * │           from various industries                             │
  * │   Learn why professionals trust ... solutions                 │
- * │             [Read Success Stories →]                          │
+ * │             [Explore More →]                                  │
  * └────────────────────────────────────────────────────┘
  *
  * All card top values ≤ 58%  →  cards cluster in UPPER half only.
@@ -200,7 +200,9 @@ export default function Testimonials() {
   if (!mounted) return <section className="w-full min-h-screen bg-white" />;
 
   return (
-    <section className="relative w-full min-h-screen bg-white overflow-hidden font-sans">
+    <section className="relative w-full h-auto min-h-fit lg:min-h-screen bg-white overflow-hidden font-sans py-20 lg:py-0">
+      {/* Left Edge Blend Overlay */}
+      <div className="absolute top-0 left-0 w-32 md:w-64 h-full bg-gradient-to-r from-white to-transparent z-[25] pointer-events-none" />
 
       {/* Subtle vertical grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]" aria-hidden>
@@ -212,16 +214,64 @@ export default function Testimonials() {
       </div>
 
       {/* ── 13 CARDS ── (desktop only, upper zone) */}
-      <div className="absolute inset-0 pointer-events-auto hidden lg:block">
-        {CARDS.map((card, i) => (
-          <TestimonialCard key={i} card={card} />
-        ))}
+      <div className="absolute inset-0 pointer-events-auto hidden lg:block overflow-hidden">
+        {/* Responsive scaling container for intermediate screen sizes */}
+        <div className="w-full h-full relative" style={{ 
+          transform: 'scale(var(--testimonials-scale, 1))',
+          transformOrigin: 'center 30%' 
+        }}>
+          {CARDS.map((card, i) => (
+            <TestimonialCard key={i} card={card} />
+          ))}
+        </div>
+      </div>
+
+      <style jsx global>{`
+        :root {
+          --testimonials-scale: 1;
+        }
+        @media (min-width: 1024px) and (max-width: 1380px) {
+          :root {
+            --testimonials-scale: 0.75;
+          }
+        }
+        @media (min-width: 1381px) and (max-width: 1540px) {
+          :root {
+            --testimonials-scale: 0.85;
+          }
+        }
+      `}</style>
+
+      {/* ── MOBILE VIDEO SHELF ── */}
+      <div className="relative z-20 lg:hidden w-full pt-10">
+        <div className="flex gap-4 overflow-x-auto px-6 pb-10 no-scrollbar snap-x snap-mandatory">
+          {SHORTS_VIDEOS.map((videoId, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 w-[160px] aspect-[4/5] rounded-[24px] overflow-hidden bg-slate-100 shadow-xl border border-black/5 snap-center relative group"
+              onClick={() => {
+                // For mobile, we can just open the video link or use a portal
+                window.open(`https://www.youtube.com/shorts/${videoId}`, '_blank');
+              }}
+            >
+              <img
+                src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                alt="testimonial"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white">
+                  <Play size={20} fill="currentColor" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── CENTER CONTENT ── starts just after bottom of group-5 card */}
       <div
-        className="relative z-10 flex flex-col items-center text-center px-6 pointer-events-none"
-        style={{ paddingTop: "42vh" }}
+        className="relative z-10 flex flex-col items-center text-center px-6 pointer-events-none pt-[5vh] lg:pt-[42vh]"
       >
         {/* Badge */}
         <motion.div
@@ -263,18 +313,21 @@ export default function Testimonials() {
         </motion.p>
 
         {/* CTA */}
-        <motion.button
+        <motion.a
+          href="https://www.youtube.com/@indasanalytics"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
           className="mt-10 mb-10 bg-[#111827] text-white px-9 py-4 rounded-full
                      flex items-center gap-3 group pointer-events-auto
-                     hover:bg-black transition-colors shadow-lg"
+                     hover:bg-black transition-colors shadow-lg no-underline inline-flex"
         >
-          <span className="text-[15px] font-medium">Read Success Stories</span>
+          <span className="text-[15px] font-medium">Explore More</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </motion.button>
+        </motion.a>
       </div>
     </section>
   );

@@ -25,10 +25,12 @@ const Section = ({
     fullHeight = false
 }: SectionProps) => {
     // Use a string-based approach or fallback to div if 'as' is provided
-    const Tag = motion[Component as keyof typeof motion] || motion.section;
+    // const Tag = motion[Component as keyof typeof motion] || motion.section;
+    const MotionComponent = motion(Component as any);
 
     return (
-        <Tag
+        // <Tag
+        <MotionComponent
             id={id}
             initial={noReveal ? "visible" : "hidden"}
             whileInView="visible"
@@ -50,7 +52,8 @@ const Section = ({
             <div className={cn("w-full max-w-[1280px] px-6 md:px-24", containerClassName)}>
                 {children}
             </div>
-        </Tag>
+        </MotionComponent>
+
     );
 };
 

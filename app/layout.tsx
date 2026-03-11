@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lexend, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Lexend, Roboto, Playfair_Display } from "next/font/google";
 import "@/styles/globals.css";
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +64,7 @@ export const metadata: Metadata = {
 
 import CustomCursor from "@/components/CustomCursor";
 import LenisProvider from "@/components/LenisProvider";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export default function RootLayout({
   children,
@@ -68,8 +74,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lexend.variable} ${roboto.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lexend.variable} ${roboto.variable} ${playfair.variable} antialiased`}
       >
+        <ScrollProgress />
         <CustomCursor />
         <LenisProvider>
           {children}

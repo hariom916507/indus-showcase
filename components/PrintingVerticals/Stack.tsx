@@ -78,17 +78,28 @@ export default function VerticalsStack() {
     const stickyRef = useRef<HTMLDivElement>(null);
     const scrollRange = useRef({ start: 0, end: 0 });
     const [progress, setProgress] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            if (!sectionRef.current) return;
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) return;
+
+        let ctx = gsap.context(() => {
+            if (!sectionRef.current || !stickyRef.current) return;
 
             const panels = Array.from(document.querySelectorAll('.horizontal-panel'));
             const myPanel = sectionRef.current.closest('.horizontal-panel') as HTMLElement;
             if (!myPanel) return;
 
             const myIndex = panels.indexOf(myPanel);
-
             let start = 0;
             for (let i = 0; i < myIndex; i++) {
                 start += (panels[i] as HTMLElement).offsetWidth;
@@ -100,26 +111,81 @@ export default function VerticalsStack() {
 
             scrollRange.current = { start, end };
 
-            ScrollTrigger.create({
-                trigger: document.body,
-                start: start,
-                end: end,
-                scrub: true,
-                onUpdate: (self) => {
-                    setProgress(self.progress);
-
-                    if (stickyRef.current) {
-                        const { start: s, end: e } = scrollRange.current;
-                        const totalX = e - s;
-                        const currentX = self.progress * totalX;
-                        gsap.set(stickyRef.current, { x: currentX });
+            // Use a proper GSAP tween with scrub matching global lag (1) to eliminate shaking
+            gsap.to(stickyRef.current, {
+                x: panelWidth - viewportWidth,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: start,
+                    end: end,
+                    scrub: 1, // MATCHED to global scrub for stability
+                    onUpdate: (self) => {
+                        setProgress(self.progress);
                     }
                 }
             });
-        }, 1000);
+        });
 
-        return () => clearTimeout(timer);
-    }, []);
+        return () => ctx.revert();
+    }, [isMobile]);
+
+    if (isMobile) {
+        return (
+            <div className="w-full bg-white py-20 px-6 flex flex-col gap-20">
+                <div className="space-y-6">
+                    <span className="inline-block px-4 py-1.5 bg-slate-100 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-slate-800 border border-slate-200">
+                        Specialized Verticals
+                    </span>
+                    <h2 className="text-6xl font-bold text-slate-900 tracking-tighter leading-[0.8]">
+                        Printing <br />
+                        <span className="text-slate-300 italic font-serif">Solutions</span>
+                    </h2>
+                    <p className="text-slate-600 text-lg leading-relaxed font-medium max-w-sm">
+                        Robust engineering meets creative precision across our industrial printing spectrum.
+                    </p>
+                </div>
+
+                <div className="flex flex-col gap-24">
+                    {VERTICAL_CARDS.map((card, idx) => (
+                        <div key={idx} className="relative flex flex-col items-center text-center">
+                            {/* Card Decoration */}
+                            <div
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none opacity-50"
+                                style={{
+                                    width: '300px',
+                                    height: '300px',
+                                    background: `radial-gradient(circle, ${card.glow}, transparent 70%)`,
+                                    filter: 'blur(60px)',
+                                    zIndex: 0
+                                }}
+                            />
+
+                            <div className="relative z-10 flex flex-col items-center">
+                                <div className="w-20 h-20 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-8 border border-slate-50">
+                                    {card.icon}
+                                </div>
+                                <img
+                                    src={card.illustration}
+                                    alt={card.title}
+                                    className="h-40 w-auto mb-6 drop-shadow-2xl"
+                                />
+                                <span className={`text-[10px] font-bold tracking-[0.4em] uppercase ${card.accent} mb-3`}>
+                                    {card.tagline}
+                                </span>
+                                <h3 className="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                                    {card.title}
+                                </h3>
+                                <p className="text-slate-600 text-base leading-relaxed max-w-xs font-medium">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div ref={sectionRef} className="relative w-full h-full bg-white overflow-hidden flex">

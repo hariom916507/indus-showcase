@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+import { Plus } from "lucide-react";
 
 export default function CustomCursor() {
     const [cursorType, setCursorType] = useState('default');
@@ -44,11 +45,12 @@ export default function CustomCursor() {
     const getCursorContent = () => {
         if (cursorType === 'reel') return "PLAY REEL";
         if (cursorType === 'close') return "CLOSE";
+        if (cursorType === 'plus') return <Plus size={24} strokeWidth={2.5} className="text-white" />;
         return "";
     };
 
     const isHovered = cursorType !== 'default';
-    const isSpecial = cursorType === 'reel' || cursorType === 'close';
+    const isSpecial = cursorType === 'reel' || cursorType === 'close' || cursorType === 'plus';
 
     return (
         <motion.div
@@ -66,8 +68,8 @@ export default function CustomCursor() {
                 opacity: 0
             }}
             animate={{
-                width: isSpecial ? 100 : (isHovered ? 60 : 24),
-                height: isSpecial ? 100 : (isHovered ? 60 : 24),
+                width: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 24)),
+                height: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 24)),
                 backgroundColor: isHovered ? "rgba(0, 0, 0, 0.9)" : "rgba(0, 0, 0, 0.5)",
                 opacity: 1
             }}

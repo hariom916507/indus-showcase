@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  */
 const Stats = () => {
   return (
-    <section id="stats" className="relative w-full bg-white transition-colors duration-500 pb-20 md:pb-32 overflow-hidden min-h-[85vh] flex items-center">
+    <section id="stats" className="relative w-full h-full bg-white transition-colors duration-500 overflow-hidden flex items-center">
 
       {/* 1. ENHANCED RAINBOW LIGHT BACKGROUND - Vibrant and Fluid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.75]">
@@ -37,6 +37,11 @@ const Stats = () => {
           className="absolute bottom-[5%] left-[10%] w-[50%] h-[50%] bg-emerald-200/50 blur-[140px] rounded-full"
         />
       </div>
+      {/* Left Edge Blend Overlay (from Hero) */}
+      <div className="absolute top-0 left-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#FAFAFA] to-transparent z-[5] pointer-events-none" />
+      
+      {/* Right Edge Blend Overlay (to Testimonials) */}
+      <div className="absolute top-0 right-0 w-32 md:w-64 h-full bg-gradient-to-l from-white to-transparent z-[5] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-24 w-full pt-10 md:pt-16">
 
@@ -50,7 +55,7 @@ const Stats = () => {
             className="max-w-4xl antialiased"
           >
             <h2
-              className="text-[10px] md:text-[15px] lg:text-[20px] tracking-[-0.01em] leading-[1.4] text-[#0f172a] font-lexend"
+              className="text-[14px] md:text-[15px] lg:text-[20px] tracking-[-0.01em] leading-[1.4] text-[#0f172a] font-lexend"
             >
               <span className="font-bold font-lexend">Some numbers we&apos;re proud of</span> — <span className="text-[#64748b] font-normal font-lexend">not for bragging, but because they reflect real partnerships and real results.</span>
             </h2>
@@ -101,7 +106,7 @@ const Stats = () => {
                 >
                   {/* Handwritten Number */}
                   <div
-                    className="text-[60px] md:text-[80px] lg:text-[96px] leading-none text-[#0f172a] select-none italic font-medium"
+                    className="text-[48px] md:text-[80px] lg:text-[96px] leading-none text-[#0f172a] select-none italic font-medium"
                     style={{ fontFamily: '"Comic Sans MS", "Comic Sans", cursive' }}
                   >
                     <div className="flex items-baseline">

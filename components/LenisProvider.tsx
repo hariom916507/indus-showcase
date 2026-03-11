@@ -15,17 +15,21 @@ function LenisManager({ children }: { children: React.ReactNode }) {
         // Register GSAP ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
-        // Initialize Lenis with optimized settings for smooth trackpad/wheel
+        if (typeof window !== "undefined") {
+            // Helps smooth out touch/trackpad interactions especially on mobile
+            ScrollTrigger.normalizeScroll(true);
+        }
+
+        // Initialize Lenis with refined settings for a "premium" smooth feel
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.5, // Slightly longer for more elegance
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2,
-            syncTouch: true, // Improved trackpad feel
-            // Prevent jitter/layout shift
+            wheelMultiplier: 1.1, // A bit more responsive
+            touchMultiplier: 1.5,
+            syncTouch: true,
             infinite: false,
         });
 

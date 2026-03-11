@@ -29,7 +29,6 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
             const mm = gsap.matchMedia();
 
             mm.add("(min-width: 1024px)", () => {
-                // Calculate the total amount to scroll horizontally.
                 const totalWidth = slider.scrollWidth;
                 const scrollAmount = totalWidth - window.innerWidth;
 
@@ -39,7 +38,7 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
                     scrollTrigger: {
                         trigger: componentRef.current,
                         pin: true,
-                        scrub: true,
+                        scrub: 1, // Add a bit of lag for smoothness
                         start: "top top",
                         end: () => `+=${slider.scrollWidth - window.innerWidth}`,
                         invalidateOnRefresh: true,
@@ -48,15 +47,19 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
                 });
             });
 
+            mm.add("(max-width: 1023px)", () => {
+                // Ensure no horizontal transform on mobile
+                gsap.set(slider, { x: 0 });
+            });
+
             // Initial refresh to capture accurate dimensions with safety timeout
             const timer = setTimeout(() => {
-                if (typeof window !== "undefined" && ScrollTrigger) {
-                    ScrollTrigger.refresh();
-                }
-            }, 500);
+                ScrollTrigger.refresh();
+            }, 1000);
 
             return () => {
                 clearTimeout(timer);
+                mm.revert();
             };
         }, componentRef);
 
@@ -96,7 +99,7 @@ export const HorizontalPanel = ({
             )}
         >
             {/* Ensure content remains centered in its max-width container within the 100vw panel */}
-            <div className="w-full h-full flex flex-col justify-center">
+            <div className="w-full lg:h-full flex flex-col justify-center py-10 lg:py-0">
                 {children}
             </div>
         </div>

@@ -133,5 +133,17 @@ export const PRODUCT_DATA: ProductType[] = [
         bg: "bg-[#F8FAFC]",
         accent: "text-slate-800",
         hex: "#1e293b"
+    },
+    {
+        id: "printude-erp",
+        category: "Smart AI ERP",
+        title: "Printude ERP",
+        tagline: "Smart Decision With Smart System",
+        description: "An advanced, AI-powered ERP system designed to optimize cost estimation and automate job cards for the next generation of printing.",
+        features: ["AI Cost Estimation", "Job Card Automation", "Inventory Management", "Reports & Analyses"],
+        image: "/products/Printude ERP.png",
+        bg: "bg-[#F4F7FF]",
+        accent: "text-sky-600",
+        hex: "#0284c7"
     }
 ];

@@ -106,7 +106,7 @@ const Header = () => {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="fixed inset-0 bg-white/95 z-[105] pointer-events-auto flex items-center justify-center backdrop-blur-2xl"
+                                className="fixed inset-0 bg-white z-[105] pointer-events-auto flex items-center justify-center"
                             >
                                 <div className="flex flex-col gap-8 text-center">
                                     {navItems.map((item, idx) => (

@@ -74,7 +74,7 @@ const Hero = () => {
   }, [isReelOpen]);
 
   return (
-    <div className="relative w-full h-full bg-transparent flex flex-col items-start pt-13 lg:pt-20 overflow-hidden">
+    <div className="relative w-full h-full bg-[#FAFAFA] flex flex-col items-start pt-13 lg:pt-20 overflow-hidden">
 
       <div className="relative z-10 w-full max-w-7xl px-6 md:px-24 flex flex-col items-start text-left">
 
@@ -230,6 +230,9 @@ const Hero = () => {
         </AnimatePresence>,
         document.body
       )}
+
+      {/* Right Edge Blend Overlay */}
+      <div className="absolute top-0 right-0 w-32 md:w-64 h-full bg-gradient-to-l from-white to-transparent z-[5] pointer-events-none" />
 
       {/* Subtle Gradient Polish */}
       <div className="absolute inset-0 pointer-events-none">
