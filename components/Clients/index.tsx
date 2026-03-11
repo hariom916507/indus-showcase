@@ -138,57 +138,44 @@ export default function Clients() {
             >
                 {/* Background Decoration */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(241,245,249,1)_0%,rgba(255,255,255,1)_100%)]" />
-                
-                <div className="relative w-full h-full flex px-20 lg:px-32">
-                    
+
+                <div className="relative w-full h-full flex px-10 lg:px-16">
+
                     {/* LEFT SIDE: Content (Sticky logic) */}
-                    <div className="w-[35%] h-full flex flex-col justify-center gap-10">
-                        <div className="space-y-8 max-w-md">
-                            <motion.span 
+                    <div className="w-[30%] h-full flex flex-col justify-between pt-20 pb-20 gap-6">
+                        <div className="space-y-6 max-w-md">
+                            <motion.span
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 className="inline-block px-6 py-2 bg-slate-900 rounded-full text-[12px] font-black uppercase tracking-[0.35em] text-white shadow-xl shadow-slate-900/10"
                             >
                                 Global Collaborations
                             </motion.span>
-                            
-                            <div className="relative mb-8">
-                                <motion.h2 
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    className="text-[8rem] font-black text-slate-950 tracking-tighter leading-[0.8] z-10 relative"
-                                >
-                                    Our
-                                </motion.h2>
-                                <motion.h2 
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    className="text-[14rem] font-black text-slate-100 absolute -bottom-16 -left-4 -z-10 select-none leading-none tracking-tightest"
-                                >
-                                    Partners
-                                </motion.h2>
-                            </div>
 
-                            <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-xs">
-                                We are proud to collaborate with industry leaders and innovation pioneers worldwide.
-                            </p>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                className="text-[3.0rem] font-black text-slate-950 tracking-tighter leading-[1.1] z-10 relative"
+                            >
+                                Our <br />
+                                Partners
+                            </motion.h2>
+                        </div>
 
-                            {/* Progress Indicator */}
-                            <div className="flex items-center gap-4 mt-12">
-                                {[0, 1, 2].map((i) => (
-                                    <div 
-                                        key={i} 
-                                        className={`h-1.5 rounded-full transition-all duration-700 ${
-                                            currentPage === i ? 'w-16 bg-slate-900' : 'w-4 bg-slate-200'
+                        {/* Progress Indicator */}
+                        <div className="flex items-center gap-4">
+                            {[0, 1, 2].map((i) => (
+                                <div
+                                    key={i}
+                                    className={`h-[2px] rounded-full transition-all duration-700 ${currentPage === i ? 'w-16 bg-slate-900' : 'w-4 bg-slate-200'
                                         }`}
-                                    />
-                                ))}
-                            </div>
+                                />
+                            ))}
                         </div>
                     </div>
 
                     {/* RIGHT SIDE: Logo Grid */}
-                    <div className="w-[65%] h-full flex items-center justify-center relative p-12">
+                    <div className="w-[70%] h-full flex items-center justify-center relative p-2">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentPage}
@@ -196,7 +183,7 @@ export default function Clients() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -40 }}
                                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                                className="grid grid-cols-4 gap-6 lg:gap-8 w-full place-items-center"
+                                className="grid grid-cols-4 gap-4 lg:gap-6 w-full place-items-center"
                             >
                                 {(currentPage === 0 ? page1 : currentPage === 1 ? page2 : page3).map((logo, idx) => (
                                     <LogoCard key={`${currentPage}-${idx}`} src={logo} delay={idx * 0.04} />
@@ -224,12 +211,12 @@ function LogoCard({ src, delay }: { src: string; delay: number }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay }}
-            className="group relative w-full aspect-[4/3] flex items-center justify-center p-8 bg-white rounded-[32px] border border-slate-100 hover:border-slate-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 cursor-pointer"
+            className="group relative w-full aspect-[4/3] flex items-center justify-center p-1 bg-white rounded-[32px] border border-slate-100 hover:border-slate-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 cursor-pointer"
         >
             <img
                 src={src}
                 alt="Partner Logo"
-                className="max-h-full max-w-full object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 brightness-110"
+                className="max-h-full max-w-full object-contain opacity-100 scale-[0.99] group-hover:scale-105 transition-all duration-700"
             />
             {/* Subtle Inner Glow on Hover */}
             <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-slate-50/0 to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
