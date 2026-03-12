@@ -89,37 +89,43 @@ export default function VerticalsStack() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (isMobile) return;
 
         let ctx = gsap.context(() => {
             if (!sectionRef.current || !stickyRef.current) return;
 
-            const panels = Array.from(document.querySelectorAll('.horizontal-panel'));
             const myPanel = sectionRef.current.closest('.horizontal-panel') as HTMLElement;
             if (!myPanel) return;
 
-            const myIndex = panels.indexOf(myPanel);
-            let start = 0;
-            for (let i = 0; i < myIndex; i++) {
-                start += (panels[i] as HTMLElement).offsetWidth;
-            }
+            const getStartIndex = () => {
+                const panels = Array.from(document.querySelectorAll('.horizontal-panel'));
+                const myIndex = panels.indexOf(myPanel);
+                let start = 0;
+                for (let i = 0; i < myIndex; i++) {
+                    start += (panels[i] as HTMLElement).offsetWidth;
+                }
+                return start;
+            };
 
-            const panelWidth = myPanel.offsetWidth;
-            const viewportWidth = window.innerWidth;
-            const end = start + (panelWidth - viewportWidth);
-
-            scrollRange.current = { start, end };
-
-            // Use a proper GSAP tween with scrub matching global lag (1) to eliminate shaking
             gsap.to(stickyRef.current, {
-                x: panelWidth - viewportWidth,
+                x: () => {
+                    const panelWidth = myPanel.offsetWidth;
+                    const viewportWidth = window.innerWidth;
+                    return (panelWidth - viewportWidth);
+                },
                 ease: "none",
                 scrollTrigger: {
                     trigger: document.body,
-                    start: start,
-                    end: end,
-                    scrub: 1, // MATCHED to global scrub for stability
+                    start: () => getStartIndex(),
+                    end: () => {
+                        const start = getStartIndex();
+                        const panelWidth = myPanel.offsetWidth;
+                        const viewportWidth = window.innerWidth;
+                        return start + (panelWidth - viewportWidth);
+                    },
+                    scrub: 0.5, // MATCHED to global scrub (0.5) for stability
+                    invalidateOnRefresh: true,
                     onUpdate: (self) => {
                         setProgress(self.progress);
                     }
@@ -129,6 +135,8 @@ export default function VerticalsStack() {
 
         return () => ctx.revert();
     }, [isMobile]);
+
+
 
     if (isMobile) {
         return (

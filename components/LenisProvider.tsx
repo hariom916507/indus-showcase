@@ -16,8 +16,11 @@ function LenisManager({ children }: { children: React.ReactNode }) {
         gsap.registerPlugin(ScrollTrigger);
 
         if (typeof window !== "undefined") {
-            // Helps smooth out touch/trackpad interactions especially on mobile
-            ScrollTrigger.normalizeScroll(true);
+            // Clear scroll memory to prevent browser from restoring scroll to an incorrect horizontal position on refresh
+            if ('scrollRestoration' in window.history) {
+                window.history.scrollRestoration = 'manual';
+            }
+            ScrollTrigger.clearScrollMemory();
         }
 
         // Initialize Lenis with refined settings for a "premium" smooth feel
@@ -54,17 +57,16 @@ function LenisManager({ children }: { children: React.ReactNode }) {
         };
     }, []);
 
-    // Reset scroll to top on route change to prevent jitter/jump
+    // Reset scroll to top on route change or refresh to ensure layout consistency
     useEffect(() => {
-        if (lenisRef.current) {
-            lenisRef.current.scrollTo(0, { immediate: true });
-        }
-        // Refresh ScrollTrigger as layout might change
         const timer = setTimeout(() => {
             if (typeof window !== "undefined" && ScrollTrigger) {
-                ScrollTrigger.refresh();
+                ScrollTrigger.refresh(true);
             }
-        }, 300);
+            if (lenisRef.current) {
+                lenisRef.current.scrollTo(0, { immediate: true });
+            }
+        }, 500);
 
         return () => clearTimeout(timer);
     }, [pathname, searchParams]);

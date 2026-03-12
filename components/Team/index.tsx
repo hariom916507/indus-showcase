@@ -114,7 +114,7 @@ const MemberDetail = ({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[10000] flex items-center justify-center p-4 md:p-10 pointer-events-auto"
+                    className="fixed inset-0 z-[2000000] flex items-center justify-center p-4 md:p-10 pointer-events-auto"
                 >
                     {/* Backdrop */}
                     <motion.div
@@ -247,42 +247,95 @@ const MemberCard = ({
 };
 
 const ALL_TEAM_MEMBERS = [
-    ...TEAM_MEMBERS,
     {
-        name: "Alex Rivera",
-        firstName: "Alex",
-        lastName: "Rivera",
-        role: "Senior AI Researcher",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
-        bio: ["Expert in LLM optimization.", "Previous experience at Tech Giants.", "PhD in Artificial Intelligence."],
-        highlight: "AI Research"
+        name: "Aarav Sharma",
+        firstName: "Aarav",
+        lastName: "Sharma",
+        role: "Head of Operations",
+        image: "/meet-our-team/1.png",
+        bio: ["Strategic planning and execution leader.", "Expert in cross-functional team management.", "Optimizing operational efficiency for scale."],
+        highlight: "Operations"
     },
     {
-        name: "Sarah Chen",
-        firstName: "Sarah",
-        lastName: "Chen",
-        role: "Product Designer",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800",
-        bio: ["User-centric design specialist.", "Focused on enterprise ERP interfaces.", "Award-winning UX designer."],
-        highlight: "Design Lead"
+        name: "Ishita Gupta",
+        firstName: "Ishita",
+        lastName: "Gupta",
+        role: "Senior Product Designer",
+        image: "/meet-our-team/2.png",
+        bio: ["Crafting intuitive and elegant user experiences.", "Leading design systems for enterprise solutions.", "Visual storytelling and brand identity expert."],
+        highlight: "Design"
     },
     {
-        name: "Michael Smith",
-        firstName: "Michael",
-        lastName: "Smith",
-        role: "Backend Engineer",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
-        bio: ["Infrastructure & scalability expert.", "Loves Rust and Go.", "Cloud architecture certified."],
-        highlight: "Core Systems"
+        name: "Rohan Mehra",
+        firstName: "Rohan",
+        lastName: "Mehra",
+        role: "Solutions Architect",
+        image: "/meet-our-team/3.png",
+        bio: ["Designing scalable cloud-native architectures.", "Full-stack development specialist.", "Ensuring robust and secure system integrity."],
+        highlight: "Architecture"
     },
     {
-        name: "Elena Rodriguez",
-        firstName: "Elena",
-        lastName: "Rodriguez",
-        role: "Quality Assurance",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-        bio: ["Zero-bug policy advocate.", "Automated testing specialist.", "Ensuring smooth ERP deployments."],
-        highlight: "Quality Hub"
+        name: "Ananya Iyer",
+        firstName: "Ananya",
+        lastName: "Iyer",
+        role: "Marketing Strategist",
+        image: "/meet-our-team/4.png",
+        bio: ["Driving brand awareness through data-driven insights.", "Expert in digital growth and customer engagement.", "Creative campaign lead."],
+        highlight: "Marketing"
+    },
+    {
+        name: "Vivin Thomas",
+        firstName: "Vivin",
+        lastName: "Thomas",
+        role: "QA & Compliance Lead",
+        image: "/meet-our-team/5.png",
+        bio: ["Maintaining highest standards of software quality.", "Implementation of automated testing frameworks.", "Process excellence advocate."],
+        highlight: "Quality"
+    },
+    {
+        name: "Sanya Malhotra",
+        firstName: "Sanya",
+        lastName: "Malhotra",
+        role: "Client Relations Manager",
+        image: "/meet-our-team/6.png",
+        bio: ["Building long-term partnerships with leading brands.", "Dedicated to client success and satisfaction.", "Expert in strategic communication."],
+        highlight: "Partnerships"
+    },
+    {
+        name: "Arjun Reddy",
+        firstName: "Arjun",
+        lastName: "Reddy",
+        role: "Data Scientist",
+        image: "/meet-our-team/7.png",
+        bio: ["Unlocking insights through advanced analytics.", "Machine learning and predictive modeling expert.", "Optimizing business outcomes with data."],
+        highlight: "Data Science"
+    },
+    {
+        name: "Kiara Advani",
+        firstName: "Kiara",
+        lastName: "Advani",
+        role: "UX Researcher",
+        image: "/meet-our-team/8.png",
+        bio: ["Deeply understanding user needs and behaviors.", "Conducting qualitative and quantitative studies.", "Informing product strategy through research."],
+        highlight: "UX Research"
+    },
+    {
+        name: "Kabir Singh",
+        firstName: "Kabir",
+        lastName: "Singh",
+        role: "Frontend Developer",
+        image: "/meet-our-team/9.png",
+        bio: ["Building responsive and performant web interfaces.", "Specialist in React and modern CSS techniques.", "Passionate about clean code and animation."],
+        highlight: "Frontend"
+    },
+    {
+        name: "Nisha Varma",
+        firstName: "Nisha",
+        lastName: "Varma",
+        role: "HR & Culture Lead",
+        image: "/meet-our-team/10.png",
+        bio: ["Nurturing a high-performance team culture.", "Talent acquisition and retention specialist.", "Empowering people for professional growth."],
+        highlight: "Culture"
     }
 ];
 
@@ -321,7 +374,7 @@ const Team = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[999999] flex items-center justify-center p-4 md:p-12 lg:p-20"
+                    className="fixed inset-0 z-[999999] flex items-center justify-center p-2 md:p-6 lg:p-10"
                     data-lenis-prevent="true"
                     onWheel={(e) => e.stopPropagation()}
                 >
@@ -341,7 +394,7 @@ const Team = () => {
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         exit={{ y: 60, opacity: 0, scale: 0.98 }}
                         transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                        className="relative w-full max-w-7xl h-full flex flex-col z-[1000000] bg-white/60 border border-white/80 rounded-[48px] shadow-[0_40px_120px_rgba(0,0,0,0.08)] overflow-hidden"
+                        className="relative w-full max-w-[1500px] h-full flex flex-col z-[1000000] bg-white/60 border border-white/80 rounded-[48px] shadow-[0_40px_120px_rgba(0,0,0,0.08)] overflow-hidden"
                     >
                         {/* POPUP HEADER - FIXED AT TOP */}
                         <div className="p-8 md:p-12 border-b border-white/40 bg-white/20 backdrop-blur-sm">

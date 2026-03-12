@@ -1,9 +1,13 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+
+import Image from "next/image";
+
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -59,34 +63,43 @@ export default function Clients() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (isMobile) return;
 
         let ctx = gsap.context(() => {
             if (!sectionRef.current || !stickyRef.current) return;
 
-            const panels = Array.from(document.querySelectorAll('.horizontal-panel'));
             const myPanel = sectionRef.current.closest('.horizontal-panel') as HTMLElement;
             if (!myPanel) return;
 
-            const myIndex = panels.indexOf(myPanel);
-            let start = 0;
-            for (let i = 0; i < myIndex; i++) {
-                start += (panels[i] as HTMLElement).offsetWidth;
-            }
-
-            const panelWidth = myPanel.offsetWidth;
-            const viewportWidth = window.innerWidth;
-            const end = start + (panelWidth - viewportWidth);
+            const getStartIndex = () => {
+                const panels = Array.from(document.querySelectorAll('.horizontal-panel'));
+                const myIndex = panels.indexOf(myPanel);
+                let start = 0;
+                for (let i = 0; i < myIndex; i++) {
+                    start += (panels[i] as HTMLElement).offsetWidth;
+                }
+                return start;
+            };
 
             gsap.to(stickyRef.current, {
-                x: panelWidth - viewportWidth,
+                x: () => {
+                    const panelWidth = myPanel.offsetWidth;
+                    const viewportWidth = window.innerWidth;
+                    return (panelWidth - viewportWidth);
+                },
                 ease: "none",
                 scrollTrigger: {
                     trigger: document.body,
-                    start: start,
-                    end: end,
-                    scrub: 1,
+                    start: () => getStartIndex(),
+                    end: () => {
+                        const start = getStartIndex();
+                        const panelWidth = myPanel.offsetWidth;
+                        const viewportWidth = window.innerWidth;
+                        return start + (panelWidth - viewportWidth);
+                    },
+                    scrub: 0.5, // Tighter sync for snappier feel
+                    invalidateOnRefresh: true,
                     onUpdate: (self) => {
                         setProgress(self.progress);
                     }
@@ -96,6 +109,9 @@ export default function Clients() {
 
         return () => ctx.revert();
     }, [isMobile]);
+
+
+
 
     // Split into 3 pages (Page 1: 12, Page 2: 12, Page 3: 5)
     const page1 = ALL_LOGOS.slice(0, 12);
@@ -122,9 +138,10 @@ export default function Clients() {
 
                 <div className="grid grid-cols-2 gap-4">
                     {ALL_LOGOS.map((logo, idx) => (
-                        <LogoCard key={idx} src={logo} delay={0} />
+                        <LogoCard key={idx} src={logo} delay={0} priority={idx < 4} />
                     ))}
                 </div>
+
             </div>
         );
     }
@@ -174,23 +191,33 @@ export default function Clients() {
                         </div>
                     </div>
 
-                    {/* RIGHT SIDE: Logo Grid */}
                     <div className="w-[70%] h-full flex items-center justify-center relative p-2">
-                        <AnimatePresence mode="wait">
+                        {[page1, page2, page3].map((page, pIdx) => (
                             <motion.div
-                                key={currentPage}
-                                initial={{ opacity: 0, y: 40 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -40 }}
-                                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                                className="grid grid-cols-4 gap-4 lg:gap-6 w-full place-items-center"
+                                key={pIdx}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{
+                                    opacity: currentPage === pIdx ? 1 : 0,
+                                    y: currentPage === pIdx ? 0 : (currentPage < pIdx ? 20 : -20),
+                                    scale: currentPage === pIdx ? 1 : 0.98,
+                                    pointerEvents: currentPage === pIdx ? "auto" : "none"
+                                }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                className="grid grid-cols-4 gap-4 lg:gap-6 w-full place-items-center absolute"
                             >
-                                {(currentPage === 0 ? page1 : currentPage === 1 ? page2 : page3).map((logo, idx) => (
-                                    <LogoCard key={`${currentPage}-${idx}`} src={logo} delay={idx * 0.04} />
+                                {page.map((logo, idx) => (
+                                    <LogoCard
+                                        key={`${pIdx}-${idx}`}
+                                        src={logo}
+                                        delay={currentPage === pIdx ? idx * 0.01 : 0}
+                                        priority={true}
+                                    />
                                 ))}
                             </motion.div>
-                        </AnimatePresence>
+                        ))}
                     </div>
+
+
 
                 </div>
             </div>
@@ -205,21 +232,27 @@ export default function Clients() {
     );
 }
 
-function LogoCard({ src, delay }: { src: string; delay: number }) {
+function LogoCard({ src, delay, priority = false }: { src: string; delay: number; priority?: boolean }) {
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay }}
-            className="group relative w-full aspect-[4/3] flex items-center justify-center p-1 bg-white rounded-[32px] border border-slate-100 hover:border-slate-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 cursor-pointer"
+            transition={{ duration: 0.4, delay }}
+            className="group relative w-full aspect-[4/3] flex items-center justify-center p-2 bg-white rounded-[24px] lg:rounded-[32px] border border-slate-100 hover:border-slate-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 cursor-pointer"
         >
-            <img
-                src={src}
-                alt="Partner Logo"
-                className="max-h-full max-w-full object-contain opacity-100 scale-[0.99] group-hover:scale-105 transition-all duration-700"
-            />
+            <div className="relative w-4/5 h-4/5">
+                <Image
+                    src={src}
+                    alt="Partner Logo"
+                    fill
+                    sizes="(max-width: 768px) 30vw, 15vw"
+                    priority={priority}
+                    className="object-contain opacity-100 scale-[0.95] group-hover:scale-105 transition-all duration-700"
+                />
+            </div>
             {/* Subtle Inner Glow on Hover */}
-            <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-slate-50/0 to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+            <div className="absolute inset-0 rounded-[24px] lg:rounded-[32px] bg-gradient-to-br from-slate-50/0 to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
         </motion.div>
     );
 }
+

@@ -48,7 +48,7 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-rose-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-indigo-50/20 via-white to-amber-50/20 -z-20" />
 
-      <Section id="footer" noReveal fullHeight containerClassName="max-w-none px-12 md:px-20" className="pt-4 pb-10 lg:pt-8 lg:pb-12">
+      <Section id="footer" noReveal containerClassName="max-w-none px-12 md:px-20" className="pt-10 pb-24 lg:pt-16 lg:pb-32">
         <div className="flex flex-col gap-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
 
@@ -90,11 +90,11 @@ const Footer = () => {
 
               <div className="flex flex-col gap-0.2">
                 {/* 3. Social Icons */}
-                <div className="flex gap-4">
+                <div className="flex gap-4 relative z-10">
                   {[
-                    { Icon: Linkedin, href: "https://www.linkedin.com/search/results/all/?keywords=Indas%20Analytics&origin=ENTITY_SEARCH_HOME_HISTORY&heroEntityKey=urn%3Ali%3Aorganization%3A28714120&position=0" },
+                    { Icon: Linkedin, href: "https://www.linkedin.com/company/indas-analytics/" },
                     { Icon: Youtube, href: "https://www.youtube.com/@indasanalytics" },
-                    { Icon: Instagram, href: "https://www.instagram.com/indasanalytics_pvt.ltd?igsh=MW92NTJ0bmU2bmgzeQ==" }
+                    { Icon: Instagram, href: "https://www.instagram.com/indasanalytics_pvt.ltd/" }
                   ].map(({ Icon, href }, i) => (
                     <motion.a
                       key={i}
@@ -110,11 +110,11 @@ const Footer = () => {
                 </div>
 
                 {/* 4. Indas Analytics Logo (Bottom) */}
-                <div className="opacity-90 hover:opacity-100 transition-opacity">
+                <div className="opacity-90 hover:opacity-100 transition-opacity -mt-20 md:-mt-20">
                   <img
                     src="/images/indas-analytics-logo.png"
                     alt="Indas Analytics Logo"
-                    className="h-96 md:h-[28rem] w-auto object-contain"
+                    className="h-80 md:h-[26rem] w-auto object-contain"
                   />
                 </div>
               </div>

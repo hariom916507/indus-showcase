@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
     { label: "Home", href: "#hero" },
-    { label: "PPA framework", href: "#framework" },
-    { label: "Printpathshala", href: "#pathshala" },
-    { label: "A PPC method", href: "#method" },
+    { label: "PPA framework", href: "https://www.ppa-framework.com/", target: "_blank" },
+    { label: "Printpathshala", href: "http://www.printpathshala.com/", target: "_blank" },
+    { label: "A PPC method", href: "https://www.indusanalytics.biz/general-1", target: "_blank" },
 ];
 
 /**
@@ -39,6 +39,8 @@ export const SideNav = () => {
                         >
                             <Link
                                 href={item.href}
+                                target={item.target}
+                                rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                                 className="text-[13px] font-black tracking-tight text-[#0f172a] hover:opacity-60 transition-all duration-300 whitespace-nowrap block rotate-[-90deg] origin-center uppercase"
                             >
                                 {item.label}
@@ -118,6 +120,8 @@ const Header = () => {
                                         >
                                             <Link
                                                 href={item.href}
+                                                target={item.target}
+                                                rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                                                 onClick={() => setIsOpen(false)}
                                                 className="text-4xl md:text-7xl font-black text-[#0f172a] hover:text-[#ff2d55] transition-colors tracking-tighter"
                                             >

@@ -17,6 +17,8 @@ if (typeof window !== "undefined") {
 export default function GlobalHorizontalScroll({ children }: { children: React.ReactNode }) {
     const componentRef = useRef<HTMLDivElement>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
+    const [isReady, setIsReady] = React.useState(false);
+
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -38,7 +40,7 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
                     scrollTrigger: {
                         trigger: componentRef.current,
                         pin: true,
-                        scrub: 1, // Add a bit of lag for smoothness
+                        scrub: 0.5, // Snappier feel
                         start: "top top",
                         end: () => `+=${slider.scrollWidth - window.innerWidth}`,
                         invalidateOnRefresh: true,
@@ -52,29 +54,39 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
                 gsap.set(slider, { x: 0 });
             });
 
-            // Initial refresh to capture accurate dimensions with safety timeout
-            const timer = setTimeout(() => {
+            // Perform multiple refreshes to ensure all layout shifts are captured
+            const t1 = setTimeout(() => {
                 ScrollTrigger.refresh();
-            }, 1000);
+                setIsReady(true);
+            }, 100);
+            
+            const t2 = setTimeout(() => ScrollTrigger.refresh(), 1000);
 
             return () => {
-                clearTimeout(timer);
+                clearTimeout(t1);
+                clearTimeout(t2);
                 mm.revert();
             };
+
+
         }, componentRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <div ref={componentRef} className="relative overflow-hidden">
+        <div ref={componentRef} className="relative overflow-hidden bg-white">
             <div
                 ref={sliderRef}
-                className="flex lg:flex-row flex-col w-full lg:w-max will-change-transform"
+                className={cn(
+                    "flex lg:flex-row flex-col w-full lg:w-max will-change-transform transition-opacity duration-700",
+                    isReady ? "opacity-100" : "opacity-0"
+                )}
             >
                 {children}
             </div>
         </div>
+
     );
 }
 
