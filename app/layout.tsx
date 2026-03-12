@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lexend, Roboto, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Lexend, Roboto, Playfair_Display, Sora } from "next/font/google";
 import "@/styles/globals.css";
 
 const playfair = Playfair_Display({
@@ -28,7 +28,11 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
 });
-
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 export const metadata: Metadata = {
   title: "Indas Analytics | AI Agents for Enterprise ERP",
   description: "Automate finance, operations, and analytics with autonomous AI agents. The next generation of ERP intelligence for modern enterprises.",
@@ -74,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lexend.variable} ${roboto.variable} ${playfair.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lexend.variable} ${roboto.variable} ${playfair.variable} ${sora.variable} antialiased`}
       >
         <ScrollProgress />
         <CustomCursor />

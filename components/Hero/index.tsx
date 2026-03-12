@@ -132,7 +132,7 @@ const Hero = () => {
           transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className={cn(
             "relative w-full mt-10 md:mt-24 mb-16 md:mb-0",
-            mounted && "group cursor-none"
+            mounted && "group"
           )}
           onClick={() => setIsReelOpen(true)}
           data-cursor={mounted ? "reel" : undefined}
@@ -162,8 +162,8 @@ const Hero = () => {
                   </text>
                 </mask>
               </defs>
-
-              <foreignObject
+ 
+               <foreignObject
                 mask="url(#hero-text-mask-firma)"
                 width="100%"
                 height="100%"
@@ -188,9 +188,9 @@ const Hero = () => {
             </svg>
           </div>
         </motion.div>
-
+ 
       </div>
-
+ 
       {/* 4. FULL REEL MODAL (Firma Style) - Portal to escape GSAP transforms */}
       {mounted && typeof document !== "undefined" && createPortal(
         <AnimatePresence>
@@ -199,7 +199,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100000] bg-black flex items-center justify-center cursor-none"
+              className="fixed inset-0 z-[100000] bg-black flex items-center justify-center"
               onClick={() => setIsReelOpen(false)}
               data-cursor="close"
             >

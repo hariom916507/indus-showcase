@@ -62,15 +62,15 @@ export default function CustomCursor() {
                 y: "-50%",
             }}
             initial={{
-                width: 24,
-                height: 24,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                width: 28,
+                height: 28,
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
                 opacity: 0
             }}
             animate={{
-                width: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 24)),
-                height: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 24)),
-                backgroundColor: isHovered ? "rgba(0, 0, 0, 0.9)" : "rgba(0, 0, 0, 0.5)",
+                width: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 28)),
+                height: cursorType === 'plus' ? 90 : (isSpecial ? 100 : (isHovered ? 60 : 28)),
+                backgroundColor: isHovered ? "rgba(0, 0, 0, 0.95)" : "rgba(0, 0, 0, 0.8)",
                 opacity: 1
             }}
             transition={{

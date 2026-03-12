@@ -131,8 +131,11 @@ export default function Clients() {
                         Our <br />
                         <span className="text-slate-200">Partners</span>
                     </h2>
-                    <p className="text-slate-500 text-lg leading-relaxed font-medium max-w-sm">
-                        We are proud to collaborate with industry leaders and innovation pioneers worldwide.
+                    <p
+                        className="text-slate-500 text-lg leading-relaxed font-medium max-w-sm"
+                        style={{ fontFamily: 'var(--font-sora), sans-serif' }}
+                    >
+                        Trusted partnerships that power innovation, technology, and industry transformation across global markets.
                     </p>
                 </div>
 
@@ -177,6 +180,15 @@ export default function Clients() {
                                 Our <br />
                                 Partners
                             </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="text-slate-500 text-lg leading-relaxed font-medium max-w-sm relative z-10"
+                                style={{ fontFamily: 'var(--font-sora), sans-serif' }}
+                            >
+                                Trusted partnerships that power innovation, technology, and industry transformation across global markets.
+                            </motion.p>
                         </div>
 
                         {/* Progress Indicator */}
