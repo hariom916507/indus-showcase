@@ -14,7 +14,7 @@ export const TEAM_MEMBERS = [
         role: "Founder of Indas Analytics",
         image: "/team/parmeshvar.png",
         bio: [
-            "21+ Years with Printing Industry.",
+            "20+ Years with Printing Industry.",
             "Serving 350+ leading Brands.",
             "Architect of Indus Print ERP.",
             "Creator of PPA Framework.",
@@ -66,11 +66,11 @@ export const TEAM_MEMBERS = [
         role: "Sales & Marketing",
         image: "/team/ritesh_cropped.png",
         bio: [
-            "10+ Years with Printing Industry.",
+            "12+ Years with Printing Industry.",
             "Print Process Automation & Workflow Expert.",
-            "Printing ERP & PPC Expert.",
-            "Quality Officer & Sr. Planning Executive (4 Years).",
-            "Collaborated with 85+ leading Brands.",
+            "JD and RACI Matrix Expert",
+            "Quality Officer & Sr. Planning Executive (6 Years).",
+            "Collaborated with 100+ leading Brands.",
             "250+ Knowledge Sharing Sessions.",
             "Coordinator of PPA Framework.",
         ],
@@ -206,6 +206,21 @@ const MemberCard = ({
                 transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col items-start w-full relative"
             >
+                {/* Name + role tag - Moved to top */}
+                {!hideInfo && (
+                    <div className="mb-6 pl-1">
+                        <h3
+                            className="text-sm md:text-lg lg:text-[1.1rem] font-bold text-[#0f172a] tracking-tight leading-[1.2] mb-1"
+                            style={{ fontFamily: "var(--font-lexend), sans-serif" }}
+                        >
+                            {member.name}
+                        </h3>
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500">
+                            {member.role}
+                        </p>
+                    </div>
+                )}
+
                 {/* Photo area */}
                 <div
                     className="relative w-full overflow-hidden group"
@@ -225,7 +240,7 @@ const MemberCard = ({
                             filter: hovered ? "grayscale(0)" : "grayscale(1)"
                         }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="w-full h-full object-contain mix-blend-multiply transition-all"
+                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-all"
                     />
 
                     {/* Plus Button Overlay (Visible only in Directory) */}
@@ -241,21 +256,6 @@ const MemberCard = ({
                         </div>
                     )}
                 </div>
-
-                {/* Name + role tag */}
-                {!hideInfo && (
-                    <div className="mt-5 pl-1">
-                        <h3
-                            className="text-sm md:text-lg lg:text-[1.1rem] font-bold text-[#0f172a] tracking-tight leading-[1.2] mb-1"
-                            style={{ fontFamily: "var(--font-lexend), sans-serif" }}
-                        >
-                            {member.name}
-                        </h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500">
-                            {member.role}
-                        </p>
-                    </div>
-                )}
             </motion.div>
 
             <MemberDetail member={member} isOpen={open} onClose={() => setOpen(false)} />
@@ -269,32 +269,77 @@ const TEAM_CATEGORIES = [
         title: "Core Team",
         members: [
             {
-                name: "Aarav Sharma",
-                firstName: "Aarav",
-                lastName: "Sharma",
-                role: "Head of Operations",
-                image: "/meet-our-team/1.png",
-                bio: ["Strategic planning and execution leader.", "Expert in cross-functional team management.", "Optimizing operational efficiency for scale."],
+                name: "Parmeshwar Patidar",
+                firstName: "Parmeshwar",
+                lastName: "Patidar",
+                role: "Founder & MD",
+                image: "/meet-our-team/Core%20team1/79.png",
+                bio: ["Architect of Indas Analytics vision.", "20+ years of printing industry expertise.", "Pioneer in print automation."],
+                highlight: "Founder"
+            },
+            {
+                name: "Amit Navarange",
+                firstName: "Amit",
+                lastName: "Navarange",
+                role: "Chief Operating Officer",
+                image: "/meet-our-team/Core%20team1/76.png",
+                bio: ["Optimizing business operations.", "Strategic resource allocation.", "Performance-driven growth."],
                 highlight: "Operations"
             },
             {
-                name: "Ishita Gupta",
-                firstName: "Ishita",
-                lastName: "Gupta",
-                role: "Senior Product Designer",
-                image: "/meet-our-team/2.png",
-                bio: ["Crafting intuitive and elegant user experiences.", "Leading design systems for enterprise solutions.", "Visual storytelling and brand identity expert."],
-                highlight: "Design"
+                name: "Sumeet Lad",
+                firstName: "Sumeet",
+                lastName: "Lad",
+                role: "Chief Growth Officer",
+                image: "/meet-our-team/Core%20team1/81.png",
+                bio: ["Accelerating global business expansion.", "Strategic partnership management.", "Growth framework architect."],
+                highlight: "Growth"
             },
             {
-                name: "Rohan Mehra",
-                firstName: "Rohan",
-                lastName: "Mehra",
-                role: "Solutions Architect",
-                image: "/meet-our-team/3.png",
-                bio: ["Designing scalable cloud-native architectures.", "Full-stack development specialist.", "Ensuring robust and secure system integrity."],
-                highlight: "Architecture"
-            }
+                name: "Vikram Kumar",
+                firstName: "Vikram",
+                lastName: "Kumar",
+                role: "Chief Marketing Officer",
+                image: "/meet-our-team/Core%20team1/78.png",
+                bio: ["Strategic brand positioning.", "Directing global marketing efforts.", "Innovation and market reach specialist."],
+                highlight: "Marketing"
+            },
+            {
+                name: "Vivek Patidar",
+                firstName: "Vivek",
+                lastName: "Patidar",
+                role: "Chief Executive Officer",
+                image: "/meet-our-team/Core%20team1/74.png",
+                bio: ["Visionary leadership and strategic growth.", "Driving organizational excellence.", "Expert in enterprise transformation."],
+                highlight: "Leadership"
+            },
+            {
+                name: "Mahesh Patidar",
+                firstName: "Mahesh",
+                lastName: "Patidar",
+                role: "Implementation Head",
+                image: "/meet-our-team/Core%20team1/75.png",
+                bio: ["Leading complex deployment strategies.", "Ensuring operational success.", "Project lifecycle management specialist."],
+                highlight: "Implementation"
+            },
+            {
+                name: "Minesh Jain",
+                firstName: "Minesh",
+                lastName: "Jain",
+                role: "Chief Technology Officer",
+                image: "/meet-our-team/Core%20team1/80.png",
+                bio: ["Directing technology roadmap.", "Architect of scalable software systems.", "Innovation lead in print-tech."],
+                highlight: "Technology"
+            },
+            {
+                name: "Kiran Singh",
+                firstName: "Kiran",
+                lastName: "Singh",
+                role: "HR & Senior Developer",
+                image: "/meet-our-team/Core%20team1/77.png",
+                bio: ["Bridging talent and technology.", "Expert in internal ecosystem building.", "Full-stack development lead."],
+                highlight: "HR & Tech"
+            },
         ]
     },
     {
@@ -302,31 +347,373 @@ const TEAM_CATEGORIES = [
         title: "Developers Team",
         members: [
             {
-                name: "Ananya Iyer",
-                firstName: "Ananya",
-                lastName: "Iyer",
+                name: "Abhinav",
+                firstName: "Abhinav",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/abhinav.png",
+                bio: ["Specialist in frontend architectures.", "Focusing on user-centric design.", "Full-stack development expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Abhishek Patidar",
+                firstName: "Abhishek",
+                lastName: "Patidar",
                 role: "Backend Engineer",
-                image: "/meet-our-team/4.png",
-                bio: ["Expert in distributed systems.", "Passionate about API design.", "Cloud infrastructure specialist."],
-                highlight: "Backend"
+                image: "/meet-our-team/Development%20team/abhishek%20patidar.png",
+                bio: ["Processing complex data workflows.", "API design and optimization.", "Database management specialist."],
+                highlight: "Development"
             },
             {
-                name: "Vivin Thomas",
-                firstName: "Vivin",
-                lastName: "Thomas",
-                role: "Frontend Developer",
-                image: "/meet-our-team/5.png",
-                bio: ["Building responsive and performant web interfaces.", "Specialist in React and modern CSS techniques.", "Passionate about clean code and animation."],
-                highlight: "Frontend"
+                name: "Abhishek",
+                firstName: "Abhishek",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/abhishek.png",
+                bio: ["Building scalable enterprise solutions.", "Cloud infrastructure expert.", "Collaborative problem solver."],
+                highlight: "Development"
             },
             {
-                name: "Sanya Malhotra",
-                firstName: "Sanya",
-                lastName: "Malhotra",
+                name: "Akshay",
+                firstName: "Akshay",
+                lastName: "",
                 role: "Full Stack Developer",
-                image: "/meet-our-team/6.png",
-                bio: ["End-to-end application development.", "Bridging the gap between UI and Backend.", "Performance optimization expert."],
-                highlight: "Full Stack"
+                image: "/meet-our-team/Development%20team/akshay.png",
+                bio: ["End-to-end application development.", "Specialist in React and Node.js.", "Automation workflow expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Anjali",
+                firstName: "Anjali",
+                lastName: "",
+                role: "Frontend Developer",
+                image: "/meet-our-team/Development%20team/anjali.png",
+                bio: ["Crafting elegant user interfaces.", "Expert in modern CSS and animations.", "Responsive design specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Ankit Patidar",
+                firstName: "Ankit",
+                lastName: "Patidar",
+                role: "Backend Developer",
+                image: "/meet-our-team/Development%20team/ankit%20patidar.png",
+                bio: ["System architecture and logic.", "Ensuring data integrity and security.", "Server-side performance expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Ankit",
+                firstName: "Ankit",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/ankit.png",
+                bio: ["Specialist in web technologies.", "Passionate about clean code.", "Full-stack integration lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Anshu",
+                firstName: "Anshu",
+                lastName: "",
+                role: "UI/UX Developer",
+                image: "/meet-our-team/Development%20team/anshu.png",
+                bio: ["Bridging design and technology.", "User experience optimization.", "Visual storytelling expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Archana",
+                firstName: "Archana",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/archana.png",
+                bio: ["Core system development.", "Technical troubleshooting lead.", "Enterprise deployment expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Banti",
+                firstName: "Banti",
+                lastName: "",
+                role: "Web Developer",
+                image: "/meet-our-team/Development%20team/banti.png",
+                bio: ["Performance-driven web apps.", "Specialist in Javascript frameworks.", "Scalable code architecture."],
+                highlight: "Development"
+            },
+            {
+                name: "Bhumika",
+                firstName: "Bhumika",
+                lastName: "",
+                role: "Systems Developer",
+                image: "/meet-our-team/Development%20team/bhumika.png",
+                bio: ["Ensuring system reliability.", "Internal tools development.", "Data visualization expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Chanchal",
+                firstName: "Chanchal",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/chanchal.png",
+                bio: ["Agile development specialist.", "Commitment to quality and testing.", "Feature implementation lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Devkanya",
+                firstName: "Devkanya",
+                lastName: "",
+                role: "Frontend Engineer",
+                image: "/meet-our-team/Development%20team/devkanya.png",
+                bio: ["High-performance UI components.", "Accessibility and performance lead.", "Modern web technologies expert."],
+                highlight: "Development"
+            },
+            {
+                name: "Devrishi",
+                firstName: "Devrishi",
+                lastName: "",
+                role: "Full Stack Engineer",
+                image: "/meet-our-team/Development%20team/devrishi.png",
+                bio: ["Architecture and deployment.", "Expert in distributed systems.", "Security and compliance lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Geetanshu",
+                firstName: "Geetanshu",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/geetanshu.png",
+                bio: ["Optimizing production environments.", "Technical implementation lead.", "Collaborative development specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Gyanendra",
+                firstName: "Gyanendra",
+                lastName: "",
+                role: "Backend Specialist",
+                image: "/meet-our-team/Development%20team/gyanendra.png",
+                bio: ["Database and logic specialist.", "Ensuring API scalability.", "Core engine developer."],
+                highlight: "Development"
+            },
+            {
+                name: "Hariom",
+                firstName: "Hariom",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/hariom.png",
+                bio: ["Full-stack development lead.", "Innovative problem solver.", "Commitment to architectural excellence."],
+                highlight: "Development"
+            },
+            {
+                name: "Himanshi",
+                firstName: "Himanshi",
+                lastName: "",
+                role: "Frontend Developer",
+                image: "/meet-our-team/Development%20team/himanshi.png",
+                bio: ["Responsive web design.", "UI state management expert.", "User interaction design."],
+                highlight: "Development"
+            },
+            {
+                name: "Ishika",
+                firstName: "Ishika",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/ishika.png",
+                bio: ["Strategic feature development.", "Expert in modern web frameworks.", "System integration specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Ishwar",
+                firstName: "Ishwar",
+                lastName: "",
+                role: "Backend Engineer",
+                image: "/meet-our-team/Development%20team/ishwar.png",
+                bio: ["Server-side optimization.", "Microservices architecture.", "Ensuring robust backend logic."],
+                highlight: "Development"
+            },
+            {
+                name: "Jatin",
+                firstName: "Jatin",
+                lastName: "",
+                role: "Web Developer",
+                image: "/meet-our-team/Development%20team/jatin.png",
+                bio: ["Modern client-side development.", "Commitment to clean architecture.", "Full-stack enthusiast."],
+                highlight: "Development"
+            },
+            {
+                name: "Komal",
+                firstName: "Komal",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/komal.png",
+                bio: ["Scalable application design.", "Passion for emerging technologies.", "Technical implementation lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Kritika",
+                firstName: "Kritika",
+                lastName: "",
+                role: "Frontend Specialist",
+                image: "/meet-our-team/Development%20team/kritika.png",
+                bio: ["Refining user experiences.", "Expert in component-based design.", "Interactive web development."],
+                highlight: "Development"
+            },
+            {
+                name: "Mahendra",
+                firstName: "Mahendra",
+                lastName: "",
+                role: "Systems Engineer",
+                image: "/meet-our-team/Development%20team/mahendra.png",
+                bio: ["Critical infrastructure development.", "Security and performance auditing.", "System reliability lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Mohini",
+                firstName: "Mohini",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/mohini.png",
+                bio: ["Feature-rich web applications.", "Agile workflow advocate.", "Expertise in full-stack ops."],
+                highlight: "Development"
+            },
+            {
+                name: "Pooja Mandloi",
+                firstName: "Pooja",
+                lastName: "Mandloi",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/pooja%20mandloi.png",
+                bio: ["Enterprise software specialist.", "Commitment to performance.", "Technical design leader."],
+                highlight: "Development"
+            },
+            {
+                name: "Pooja",
+                firstName: "Pooja",
+                lastName: "",
+                role: "Web Developer",
+                image: "/meet-our-team/Development%20team/pooja.png",
+                bio: ["Dynamic web solutions.", "UI and state architecture.", "Passion for scalable code."],
+                highlight: "Development"
+            },
+            {
+                name: "Prateek",
+                firstName: "Prateek",
+                lastName: "",
+                role: "Full Stack Engineer",
+                image: "/meet-our-team/Development%20team/prateek.png",
+                bio: ["End-to-end product delivery.", "Architecting scalable backends.", "User interface specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Prathvi",
+                firstName: "Prathvi",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/prathvi.png",
+                bio: ["High-impact software solutions.", "Commitment to clean code.", "System optimization lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Pravin",
+                firstName: "Pravin",
+                lastName: "",
+                role: "Backend Developer",
+                image: "/meet-our-team/Development%20team/pravin.png",
+                bio: ["Data processing and logic.", "Ensuring API reliability.", "System architecture enthusiast."],
+                highlight: "Development"
+            },
+            {
+                name: "Priyanshu",
+                firstName: "Priyanshu",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/priyanshu.png",
+                bio: ["Core platform development.", "Performance tuning and scaling.", "Cloud native specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Richa",
+                firstName: "Richa",
+                lastName: "",
+                role: "Frontend Developer",
+                image: "/meet-our-team/Development%20team/richa.png",
+                bio: ["User centric frontend design.", "Expert in React ecosystem.", "Refining digital experiences."],
+                highlight: "Development"
+            },
+            {
+                name: "Sanjana",
+                firstName: "Sanjana",
+                lastName: "",
+                role: "Web Developer",
+                image: "/meet-our-team/Development%20team/sanjana.png",
+                bio: ["Responsive web applications.", "Focusing on intuitive UX.", "Passionate full-stack developer."],
+                highlight: "Development"
+            },
+            {
+                name: "Shreyansh",
+                firstName: "Shreyansh",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/shreyansh.png",
+                bio: ["Modern software architectures.", "Commitment to code quality.", "Problem-solving specialist."],
+                highlight: "Development"
+            },
+            {
+                name: "Shriroop",
+                firstName: "Shriroop",
+                lastName: "",
+                role: "Full Stack Developer",
+                image: "/meet-our-team/Development%20team/shriroop.png",
+                bio: ["Building cohesive web ecosystems.", "Specialist in API integration.", "Deployment engineering lead."],
+                highlight: "Development"
+            },
+            {
+                name: "Shubham",
+                firstName: "Shubham",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/shubham.png",
+                bio: ["Scalable enterprise systems.", "Backend logic and optimization.", "Innovation-driven developer."],
+                highlight: "Development"
+            },
+            {
+                name: "Tarun",
+                firstName: "Tarun",
+                lastName: "",
+                role: "Web Developer",
+                image: "/meet-our-team/Development%20team/tarun.png",
+                bio: ["Agile application development.", "Frontend performance expert.", "Commitment to clean UI."],
+                highlight: "Development"
+            },
+            {
+                name: "Ujjwal",
+                firstName: "Ujjwal",
+                lastName: "",
+                role: "Software Developer",
+                image: "/meet-our-team/Development%20team/ujjwal.png",
+                bio: ["Enterprise platform scaling.", "Full-stack development expert.", "Technical solution architect."],
+                highlight: "Development"
+            },
+            {
+                name: "Vikesh",
+                firstName: "Vikesh",
+                lastName: "",
+                role: "Software Engineer",
+                image: "/meet-our-team/Development%20team/vikesh.png",
+                bio: ["Ensuring system integrity.", "Robust backend architectures.", "Specialist in distributed databases."],
+                highlight: "Development"
+            },
+            {
+                name: "Vishal",
+                firstName: "Vishal",
+                lastName: "",
+                role: "Frontend Specialist",
+                image: "/meet-our-team/Development%20team/vishal.png",
+                bio: ["High-fidelity web interfaces.", "Expert in CSS and Javascript.", "Committed to user satisfaction."],
+                highlight: "Development"
+            },
+            {
+                name: "Yash",
+                firstName: "Yash",
+                lastName: "",
+                role: "Full Stack Developer",
+                image: "/meet-our-team/Development%20team/yash.png",
+                bio: ["End-to-end web architectures.", "Passionate about clean code.", "Scalable solution specialist."],
+                highlight: "Development"
             }
         ]
     },
@@ -334,24 +721,6 @@ const TEAM_CATEGORIES = [
         id: "implementation",
         title: "Implementation Team",
         members: [
-            {
-                name: "Abhishek",
-                firstName: "Abhishek",
-                lastName: "",
-                role: "Implementation Expert",
-                image: "/meet-our-team/Implementation%20Team/abhishek.png",
-                bio: ["Specialist in enterprise deployments.", "Technical workflow optimization.", "Client success focused."],
-                highlight: "Deployment"
-            },
-            {
-                name: "Ankit",
-                firstName: "Ankit",
-                lastName: "",
-                role: "Technical Consultant",
-                image: "/meet-our-team/Implementation%20Team/ankit.png",
-                bio: ["System integration specialist.", "Expert in ERP implementation.", "Advanced troubleshooting."],
-                highlight: "Consulting"
-            },
             {
                 name: "Bablu",
                 firstName: "Bablu",
@@ -371,6 +740,42 @@ const TEAM_CATEGORIES = [
                 highlight: "Coordination"
             },
             {
+                name: "Mahendra",
+                firstName: "Mahendra",
+                lastName: "",
+                role: "Systems Engineer",
+                image: "/meet-our-team/Implementation%20Team/mahendra.png",
+                bio: ["Hardware and software sync expert.", "Edge computing integration.", "Network reliability."],
+                highlight: "Systems"
+            },
+            {
+                name: "Sonali",
+                firstName: "Sonali",
+                lastName: "",
+                role: "User Success Manager",
+                image: "/meet-our-team/Implementation%20Team/sonali.png",
+                bio: ["Dedicated to maximizing user value.", "Strategic account management.", "Client relationship lead."],
+                highlight: "Success"
+            },
+            {
+                name: "Surbhi",
+                firstName: "Surbhi",
+                lastName: "",
+                role: "Solution Designer",
+                image: "/meet-our-team/Implementation%20Team/surbhi.png",
+                bio: ["Crafting custom ERP workflows.", "Requirement analysis expert.", "Product-market fit auditor."],
+                highlight: "Design"
+            },
+            {
+                name: "Yashkirthi",
+                firstName: "Yashkirthi",
+                lastName: "",
+                role: "Deployment Architect",
+                image: "/meet-our-team/Implementation%20Team/yashkirthi.png",
+                bio: ["Architecting complex installations.", "Hybrid cloud infrastructure.", "Security & scalability lead."],
+                highlight: "Architecture"
+            },
+            {
                 name: "Lalita",
                 firstName: "Lalita",
                 lastName: "",
@@ -380,13 +785,22 @@ const TEAM_CATEGORIES = [
                 highlight: "Leadership"
             },
             {
-                name: "Mahendra",
-                firstName: "Mahendra",
+                name: "Abhishek",
+                firstName: "Abhishek",
                 lastName: "",
-                role: "Systems Engineer",
-                image: "/meet-our-team/Implementation%20Team/mahendra.png",
-                bio: ["Hardware and software sync expert.", "Edge computing integration.", "Network reliability."],
-                highlight: "Systems"
+                role: "Implementation Expert",
+                image: "/meet-our-team/Implementation%20Team/abhishek.png",
+                bio: ["Specialist in enterprise deployments.", "Technical workflow optimization.", "Client success focused."],
+                highlight: "Deployment"
+            },
+            {
+                name: "Ankit",
+                firstName: "Ankit",
+                lastName: "",
+                role: "Technical Consultant",
+                image: "/meet-our-team/Implementation%20Team/ankit.png",
+                bio: ["System integration specialist.", "Expert in ERP implementation.", "Advanced troubleshooting."],
+                highlight: "Consulting"
             },
             {
                 name: "Manish",
@@ -433,33 +847,6 @@ const TEAM_CATEGORIES = [
                 bio: ["Ensuring timely project delivery.", "Client onboarding lead.", "Project lifecycle management."],
                 highlight: "Delivery"
             },
-            {
-                name: "Sonali",
-                firstName: "Sonali",
-                lastName: "",
-                role: "User Success Manager",
-                image: "/meet-our-team/Implementation%20Team/sonali.png",
-                bio: ["Dedicated to maximizing user value.", "Strategic account management.", "Client relationship lead."],
-                highlight: "Success"
-            },
-            {
-                name: "Surbhi",
-                firstName: "Surbhi",
-                lastName: "",
-                role: "Solution Designer",
-                image: "/meet-our-team/Implementation%20Team/surbhi.png",
-                bio: ["Crafting custom ERP workflows.", "Requirement analysis expert.", "Product-market fit auditor."],
-                highlight: "Design"
-            },
-            {
-                name: "Yashkirthi",
-                firstName: "Yashkirthi",
-                lastName: "",
-                role: "Deployment Architect",
-                image: "/meet-our-team/Implementation%20Team/yashkirthi.png",
-                bio: ["Architecting complex installations.", "Hybrid cloud infrastructure.", "Security & scalability lead."],
-                highlight: "Architecture"
-            }
         ]
     },
     {
@@ -467,7 +854,7 @@ const TEAM_CATEGORIES = [
         title: "Sales & Marketing Team",
         members: [
             {
-                name: "Banvari",
+                name: "Banvari patidar",
                 firstName: "Banvari",
                 lastName: "",
                 role: "Sales Executive",
@@ -483,15 +870,6 @@ const TEAM_CATEGORIES = [
                 image: "/meet-our-team/Sales%20&%20Marketing%20Team/bhupendra.png",
                 bio: ["Strategic marketing planning.", "Brand positioning expert.", "Market analysis and insights."],
                 highlight: "Marketing"
-            },
-            {
-                name: "Hemant",
-                firstName: "Hemant",
-                lastName: "",
-                role: "Sales Lead",
-                image: "/meet-our-team/Sales%20&%20Marketing%20Team/hemant.png",
-                bio: ["Leading sales acquisition efforts.", "Strong relationship management.", "Industry workflow expert."],
-                highlight: "Sales"
             },
             {
                 name: "Manish",
@@ -510,6 +888,15 @@ const TEAM_CATEGORIES = [
                 image: "/meet-our-team/Sales%20&%20Marketing%20Team/suyash.png",
                 bio: ["Passionate about customer support.", "Solution-oriented approach.", "Expert in product demonstrations."],
                 highlight: "Service"
+            },
+            {
+                name: "Hemant",
+                firstName: "Hemant",
+                lastName: "",
+                role: "Sales Lead",
+                image: "/meet-our-team/Sales%20&%20Marketing%20Team/hemant.png",
+                bio: ["Leading sales acquisition efforts.", "Strong relationship management.", "Industry workflow expert."],
+                highlight: "Sales"
             }
         ]
     }
@@ -698,7 +1085,7 @@ const Team = () => {
             {/* 4-Column Grid + Side CTA */}
             <div className="flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-16">
                 {/* The Leadership Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-14 flex-grow">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-14 flex-grow items-end">
                     {TEAM_MEMBERS.map((member, i) => (
                         <MemberCard key={i} member={member} index={i} />
                     ))}

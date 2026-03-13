@@ -14,38 +14,31 @@ if (typeof window !== "undefined") {
 }
 
 const ASSOCIATED_LOGOS = [
-    "/Associated/Devtech.png",
-    "/Associated/FAPGA.png",
-    "/Associated/IMPA.png",
-    "/Associated/MMS.png",
-    "/Associated/Print Week Awards.png",
-    "/Associated/Technova.png",
-    "/Associated/Word Print Hub.png",
+    "/Associated-transparent-bg-logo/17.png",
+    "/Associated-transparent-bg-logo/18.png",
+    "/Associated-transparent-bg-logo/19.png",
+    "/Associated-transparent-bg-logo/20.png",
+    "/Associated-transparent-bg-logo/21.png",
+    "/Associated-transparent-bg-logo/22.png",
 ];
 
 const CLIENT_LOGOS = [
-    "/Clients Logo/Picture1.png",
-    "/Clients Logo/Picture2.jpg",
-    "/Clients Logo/Picture3.jpg",
-    "/Clients Logo/Picture4.png",
-    "/Clients Logo/Picture5.jpg",
-    "/Clients Logo/Picture6.jpg",
-    "/Clients Logo/Picture7.jpg",
-    "/Clients Logo/Picture8.png",
-    "/Clients Logo/Picture9.jpg",
-    "/Clients Logo/Picture10.jpg",
-    "/Clients Logo/Picture11.png",
-    "/Clients Logo/Picture12.png",
-    "/Clients Logo/Picture13.jpg",
-    "/Clients Logo/Picture14.jpg",
-    "/Clients Logo/Picture15.jpg",
-    "/Clients Logo/Picture16.png",
-    "/Clients Logo/Picture17.jpg",
-    "/Clients Logo/Picture18.png",
-    "/Clients Logo/Picture19.png",
-    "/Clients Logo/Picture20.jpg",
-    "/Clients Logo/Picture21.png",
-    "/Clients Logo/Picture22.png",
+    "/Client-logo-transparent-bg/1.png",
+    "/Client-logo-transparent-bg/2.png",
+    "/Client-logo-transparent-bg/3.png",
+    "/Client-logo-transparent-bg/4.png",
+    "/Client-logo-transparent-bg/5.png",
+    "/Client-logo-transparent-bg/6.png",
+    "/Client-logo-transparent-bg/7.png",
+    "/Client-logo-transparent-bg/8.png",
+    "/Client-logo-transparent-bg/9.png",
+    "/Client-logo-transparent-bg/10.png",
+    "/Client-logo-transparent-bg/11.png",
+    "/Client-logo-transparent-bg/12.png",
+    "/Client-logo-transparent-bg/13.png",
+    "/Client-logo-transparent-bg/14.png",
+    "/Client-logo-transparent-bg/15.png",
+    "/Client-logo-transparent-bg/16.png",
 ];
 
 const ALL_LOGOS = [...ASSOCIATED_LOGOS, ...CLIENT_LOGOS];
@@ -113,12 +106,11 @@ export default function Clients() {
 
 
 
-    // Split into 3 pages (Page 1: 12, Page 2: 12, Page 3: 5)
+    // Split into 2 pages (Page 1: 12, Page 2: 10) - Total 22
     const page1 = ALL_LOGOS.slice(0, 12);
-    const page2 = ALL_LOGOS.slice(12, 24);
-    const page3 = ALL_LOGOS.slice(24, 29);
+    const page2 = ALL_LOGOS.slice(12, 22);
 
-    const currentPage = progress < 0.33 ? 0 : progress < 0.66 ? 1 : 2;
+    const currentPage = progress < 0.5 ? 0 : 1;
 
     if (isMobile) {
         return (
@@ -193,7 +185,7 @@ export default function Clients() {
 
                         {/* Progress Indicator */}
                         <div className="flex items-center gap-4">
-                            {[0, 1, 2].map((i) => (
+                            {[0, 1].map((i) => (
                                 <div
                                     key={i}
                                     className={`h-[2px] rounded-full transition-all duration-700 ${currentPage === i ? 'w-16 bg-slate-900' : 'w-4 bg-slate-200'
@@ -204,7 +196,7 @@ export default function Clients() {
                     </div>
 
                     <div className="w-[70%] h-full flex items-center justify-center relative p-2">
-                        {[page1, page2, page3].map((page, pIdx) => (
+                        {[page1, page2].map((page, pIdx) => (
                             <motion.div
                                 key={pIdx}
                                 initial={{ opacity: 0, y: 20 }}
@@ -250,20 +242,18 @@ function LogoCard({ src, delay, priority = false }: { src: string; delay: number
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay }}
-            className="group relative w-full aspect-[4/3] flex items-center justify-center p-2 bg-white rounded-[24px] lg:rounded-[32px] border border-slate-100 hover:border-slate-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 cursor-pointer"
+            className="group relative w-full aspect-[4/3] flex items-center justify-center p-4 cursor-pointer"
         >
-            <div className="relative w-4/5 h-4/5">
+            <div className="relative w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.15]">
                 <Image
                     src={src}
                     alt="Partner Logo"
                     fill
                     sizes="(max-width: 768px) 30vw, 15vw"
                     priority={priority}
-                    className="object-contain opacity-100 scale-[0.95] group-hover:scale-105 transition-all duration-700"
+                    className="object-contain opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
                 />
             </div>
-            {/* Subtle Inner Glow on Hover */}
-            <div className="absolute inset-0 rounded-[24px] lg:rounded-[32px] bg-gradient-to-br from-slate-50/0 to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
         </motion.div>
     );
 }

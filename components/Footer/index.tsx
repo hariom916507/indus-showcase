@@ -90,9 +90,9 @@ const Footer = () => {
 
               <div className="flex flex-col gap-0.2">
                 {/* 3. Social Icons */}
-                <div className="flex gap-4 relative z-10">
+                <div className="flex flex-wrap items-center gap-4 relative z-10">
                   {[
-                    { Icon: Linkedin, href: "https://www.linkedin.com/company/indas-analytics/" },
+                    { Icon: Linkedin, href: "https://www.linkedin.com/company/indasanalytics/" },
                     { Icon: Youtube, href: "https://www.youtube.com/@indasanalytics" },
                     { Icon: Instagram, href: "https://www.instagram.com/indasanalytics_pvt.ltd/" }
                   ].map(({ Icon, href }, i) => (
@@ -107,6 +107,16 @@ const Footer = () => {
                       <Icon size={18} strokeWidth={2.5} />
                     </motion.a>
                   ))}
+
+                  <Link href="/work">
+                    <motion.button
+                      whileHover={{ y: -5, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="h-12 px-8 rounded-full bg-white/80 backdrop-blur-md border border-slate-100 shadow-sm flex items-center justify-center text-[13px] font-bold text-slate-900 transition-all duration-300 hover:border-slate-900"
+                    >
+                      EXPO
+                    </motion.button>
+                  </Link>
                 </div>
 
                 {/* 4. Indas Analytics Logo (Bottom) */}

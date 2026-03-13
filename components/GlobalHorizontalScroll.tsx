@@ -59,7 +59,7 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
                 ScrollTrigger.refresh();
                 setIsReady(true);
             }, 100);
-            
+
             const t2 = setTimeout(() => ScrollTrigger.refresh(), 1000);
 
             return () => {
