@@ -70,26 +70,26 @@ const WORK_ITEMS = [
     z: 10
   },
   {
-      id: 6,
-      title: "Enterprise ERP",
-      category: "Management",
-      image: "/images/large-format-3d.png",
-      width: "35vw",
-      height: "90vh",
-      top: "5vh",
-      left: "340vw",
-      z: 20
+    id: 6,
+    title: "Enterprise ERP",
+    category: "Management",
+    image: "/images/large-format-3d.png",
+    width: "35vw",
+    height: "90vh",
+    top: "5vh",
+    left: "340vw",
+    z: 20
   },
   {
-      id: 7,
-      title: "3D Commercial",
-      category: "Rendering",
-      image: "/images/commercial-3d.png",
-      width: "40vw",
-      height: "100vh",
-      top: "0",
-      left: "410vw",
-      z: 10
+    id: 7,
+    title: "3D Commercial",
+    category: "Rendering",
+    image: "/images/commercial-3d.png",
+    width: "40vw",
+    height: "100vh",
+    top: "0",
+    left: "410vw",
+    z: 10
   }
 ];
 
@@ -100,36 +100,40 @@ export default function WorkPage() {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      const track = trackRef.current;
-      if (!track) return;
+      let mm = gsap.matchMedia();
 
-      const totalWidth = track.scrollWidth;
-      const scrollAmount = totalWidth - window.innerWidth;
+      mm.add("(min-width: 1024px)", () => {
+        const track = trackRef.current;
+        if (!track) return;
 
-      // Horizontal Scroll
-      gsap.to(track, {
-        x: -scrollAmount,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          pin: true,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          invalidateOnRefresh: true,
-        },
-      });
+        const totalWidth = track.scrollWidth;
+        const scrollAmount = totalWidth - window.innerWidth;
 
-      // Parallax for Background Text
-      gsap.to(bgTextRef.current, {
-        x: -scrollAmount * 0.3, // Subtle movement
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-        }
+        // Horizontal Scroll
+        gsap.to(track, {
+          x: -scrollAmount,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            pin: true,
+            scrub: 1,
+            start: "top top",
+            end: () => `+=${totalWidth}`,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Parallax for Background Text
+        gsap.to(bgTextRef.current, {
+          x: -scrollAmount * 0.3, // Subtle movement
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            scrub: 1,
+            start: "top top",
+            end: () => `+=${totalWidth}`,
+          }
+        });
       });
     });
 
@@ -139,51 +143,51 @@ export default function WorkPage() {
   return (
     <main className="bg-[#F3F3F3] dark:bg-[#0A0A0A] selection:bg-black selection:text-white">
       <Header />
-      
+
       {/* Scroll Indicator */}
       <div className="fixed bottom-10 left-12 z-50 text-[10px] uppercase tracking-[0.4em] font-black text-slate-400/60 pointer-events-none">
         scroll / drag
       </div>
 
-      <div ref={containerRef} className="h-screen overflow-hidden relative">
+      <div ref={containerRef} className="lg:h-screen lg:overflow-hidden relative pb-32 lg:pb-0">
         {/* Massive Background Text */}
-        <div 
+        <div
           ref={bgTextRef}
-          className="absolute inset-y-0 left-0 flex items-center h-full pointer-events-none z-0 px-[10vw]"
+          className="absolute inset-y-0 left-0 flex lg:items-center h-full pointer-events-none z-0 px-6 lg:px-[10vw] max-lg:top-20"
         >
-          <h1 className="text-[50vw] font-black leading-none text-black/[0.04] dark:text-white/[0.04] whitespace-nowrap uppercase select-none tracking-tighter">
+          <h1 className="text-[25vw] lg:text-[50vw] font-black leading-none text-black/[0.04] dark:text-white/[0.04] whitespace-nowrap uppercase select-none tracking-tighter">
             Selected Work
           </h1>
         </div>
 
-        {/* Horizontal Track */}
-        <div 
-          ref={trackRef} 
-          className="relative h-full w-[600vw] z-10"
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="relative h-full lg:w-[600vw] z-10 flex flex-col lg:block gap-12 lg:gap-0 px-6 pt-32 lg:px-0 lg:pt-0"
         >
           {WORK_ITEMS.map((item) => (
             <WorkItem key={item.id} item={item} />
           ))}
 
           {/* Final "Let's Talk" Section */}
-          <div className="absolute right-0 top-0 w-[100vw] h-full flex flex-col justify-center px-[10vw]">
+          <div className="lg:absolute right-0 top-0 lg:w-[100vw] h-full flex flex-col justify-center lg:px-[10vw] mt-20 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               className="max-w-4xl"
             >
-              <h2 className="text-[12vw] font-black leading-[0.9] text-black dark:text-white uppercase tracking-tighter">
+              <h2 className="text-[20vw] lg:text-[12vw] font-black leading-[0.9] text-black dark:text-white uppercase tracking-tighter">
                 Let's <br /> Talk.
               </h2>
               <Link href="/#footer">
                 <motion.div
                   whileHover={{ x: 30 }}
-                  className="flex items-center gap-10 mt-20 group cursor-pointer"
+                  className="flex items-center gap-6 lg:gap-10 mt-10 lg:mt-20 group cursor-pointer"
                 >
-                  <div className="w-24 h-24 rounded-full bg-black flex items-center justify-center text-white ring-12 ring-black/5 transition-all duration-500 group-hover:ring-black/10">
-                    <ArrowUpRight size={48} />
+                  <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-black flex items-center justify-center text-white ring-12 ring-black/5 transition-all duration-500 group-hover:ring-black/10">
+                    <ArrowUpRight className="w-8 h-8 lg:w-12 lg:h-12" />
                   </div>
-                  <span className="text-3xl font-black uppercase tracking-[0.1em] border-b-4 border-black/5 group-hover:border-black transition-all duration-500">
+                  <span className="text-xl lg:text-3xl font-black uppercase tracking-[0.1em] border-b-4 border-black/5 group-hover:border-black transition-all duration-500">
                     Start a project
                   </span>
                 </motion.div>
@@ -209,14 +213,14 @@ function WorkItem({ item }: { item: typeof WORK_ITEMS[0] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-      className="absolute group cursor-none"
+      className="group cursor-none relative w-full h-[50vh] lg:absolute lg:w-[var(--desk-w)] lg:h-[var(--desk-h)] lg:top-[var(--desk-t)] lg:left-[var(--desk-l)]"
       style={{
-        width: item.width,
-        height: item.height,
-        top: item.top,
-        left: item.left,
+        '--desk-w': item.width,
+        '--desk-h': item.height,
+        '--desk-t': item.top,
+        '--desk-l': item.left,
         zIndex: item.z,
-      }}
+      } as React.CSSProperties}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -228,7 +232,7 @@ function WorkItem({ item }: { item: typeof WORK_ITEMS[0] }) {
           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
           whileHover={{ scale: 1.05 }}
         />
-        
+
         {/* Custom Hover Circle (Mobius Style) */}
         <motion.div
           animate={{ scale: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}

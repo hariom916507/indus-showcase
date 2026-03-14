@@ -19,6 +19,24 @@ export default function GlobalHorizontalScroll({ children }: { children: React.R
     const sliderRef = useRef<HTMLDivElement>(null);
     const [isReady, setIsReady] = React.useState(false);
 
+    // Support horizontal wheel/trackpad scrolling
+    React.useEffect(() => {
+        const handleWheel = (e: WheelEvent) => {
+            // Only intercept if we're on desktop and primarily scrolling horizontally
+            if (window.innerWidth >= 1024 && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                // Manually scroll the window vertically by the deltaX amount
+                // Lenis will pick this up and smooth it out
+                window.scrollBy({
+                    top: e.deltaX,
+                    behavior: 'auto'
+                });
+            }
+        };
+
+        window.addEventListener('wheel', handleWheel, { passive: true });
+        return () => window.removeEventListener('wheel', handleWheel);
+    }, []);
+
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {

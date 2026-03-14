@@ -21,7 +21,7 @@ export const ContactForm = () => {
         <div className="relative group w-full">
             {/* Massive Ambient Glow / Backdrop Flare */}
             <div className="absolute -inset-10 bg-gradient-to-tr from-slate-200/60 via-blue-100/40 to-slate-300/50 blur-[100px] opacity-80 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-            
+
             <div className="relative w-full bg-white rounded-[40px] 
                 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.15),0_20px_40px_-20px_rgba(0,0,0,0.1),0_0_1px_rgba(0,0,0,0.05)] 
                 hover:shadow-[0_40px_120px_-20px_rgba(0,0,0,0.2),0_25px_50px_-20px_rgba(0,0,0,0.15),0_0_2px_rgba(0,0,0,0.1)]
@@ -119,7 +119,7 @@ export const ContactForm = () => {
                                     Thank you for reaching out. <br />
                                     Our team will get back to you shortly.
                                 </p>
-                                <motion.button 
+                                <motion.button
                                     onClick={() => setIsSubmitted(false)}
                                     className="mt-8 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-slate-900 transition-colors"
                                 >
@@ -156,8 +156,8 @@ export const ContactForm = () => {
                         {/* Social Icons */}
                         <div className="flex justify-center lg:justify-start gap-4">
                             {[
-                                { Icon: Linkedin, href: "https://www.linkedin.com/company/indas-analytics/" },
-                                { Icon: Youtube, href: "https://www.youtube.com/@indasanalytics" },
+                                { Icon: Linkedin, href: "https://www.linkedin.com/company/indasanalytics/" },
+                                //    { Icon: Youtube, href: "https://www.youtube.com/@indasanalytics" },
                                 { Icon: Instagram, href: "https://www.instagram.com/indasanalytics_pvt.ltd/" }
                             ].map(({ Icon, href }, idx) => (
                                 <motion.a

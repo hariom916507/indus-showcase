@@ -28,7 +28,7 @@ function LenisManager({ children }: { children: React.ReactNode }) {
             duration: 1.5, // Slightly longer for more elegance
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
-            gestureOrientation: "vertical",
+            gestureOrientation: "both",
             smoothWheel: true,
             wheelMultiplier: 1.1, // A bit more responsive
             touchMultiplier: 1.5,

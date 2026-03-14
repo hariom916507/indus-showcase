@@ -343,8 +343,8 @@ export default function ProductCardSwap() {
                         </div>
                     </div>
 
-                    <div className="w-full lg:flex-1 h-[400px] md:h-full flex items-center justify-center relative order-1 lg:order-2" style={{ perspective: "1100px" }}>
-                        <div className="relative scale-75 md:scale-100" style={{ width: 480, height: 580 }}>
+                    <div className="w-full lg:flex-1 h-[350px] md:h-full flex items-center justify-center relative order-1 lg:order-2" style={{ perspective: "1100px" }}>
+                        <div className="relative scale-[0.6] min-[390px]:scale-[0.7] sm:scale-75 md:scale-100 origin-center" style={{ width: 480, height: 580 }}>
                             <AnimatePresence>
                                 {stackProducts.map((product, slot) => (
                                     <ProductCard key={product.id} product={product} slot={slot} />

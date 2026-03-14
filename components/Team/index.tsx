@@ -143,7 +143,7 @@ const MemberDetail = ({
                             </button>
 
                             {/* Photo panel */}
-                            <div className="w-full md:w-2/5 bg-[#F3F3F3] flex items-end justify-center overflow-hidden min-h-[320px]">
+                            <div className="w-full md:w-2/5 bg-[#F3F3F3] flex items-end justify-center overflow-hidden h-[250px] md:h-auto md:min-h-[320px] shrink-0">
                                 <img
                                     src={member.image}
                                     alt={member.name}
@@ -296,15 +296,6 @@ const TEAM_CATEGORIES = [
                 highlight: "Growth"
             },
             {
-                name: "Vikram Kumar",
-                firstName: "Vikram",
-                lastName: "Kumar",
-                role: "Chief Marketing Officer",
-                image: "/meet-our-team/Core%20team1/78.png",
-                bio: ["Strategic brand positioning.", "Directing global marketing efforts.", "Innovation and market reach specialist."],
-                highlight: "Marketing"
-            },
-            {
                 name: "Vivek Patidar",
                 firstName: "Vivek",
                 lastName: "Patidar",
@@ -312,6 +303,15 @@ const TEAM_CATEGORIES = [
                 image: "/meet-our-team/Core%20team1/74.png",
                 bio: ["Visionary leadership and strategic growth.", "Driving organizational excellence.", "Expert in enterprise transformation."],
                 highlight: "Leadership"
+            },
+            {
+                name: "Vikram Kumar",
+                firstName: "Vikram",
+                lastName: "Kumar",
+                role: "Chief Marketing Officer",
+                image: "/meet-our-team/Core%20team1/78.png",
+                bio: ["Strategic brand positioning.", "Directing global marketing efforts.", "Innovation and market reach specialist."],
+                highlight: "Marketing"
             },
             {
                 name: "Mahesh Patidar",
@@ -491,15 +491,6 @@ const TEAM_CATEGORIES = [
                 highlight: "Development"
             },
             {
-                name: "Hariom",
-                firstName: "Hariom",
-                lastName: "",
-                role: "Software Developer",
-                image: "/meet-our-team/Development%20team/hariom.png",
-                bio: ["Full-stack development lead.", "Innovative problem solver.", "Commitment to architectural excellence."],
-                highlight: "Development"
-            },
-            {
                 name: "Himanshi",
                 firstName: "Himanshi",
                 lastName: "",
@@ -557,7 +548,7 @@ const TEAM_CATEGORIES = [
                 name: "Mahendra",
                 firstName: "Mahendra",
                 lastName: "",
-                role: "Systems Engineer",
+                role: "Software Developer",
                 image: "/meet-our-team/Development%20team/mahendra.png",
                 bio: ["Critical infrastructure development.", "Security and performance auditing.", "System reliability lead."],
                 highlight: "Development"
@@ -706,6 +697,15 @@ const TEAM_CATEGORIES = [
                 bio: ["High-fidelity web interfaces.", "Expert in CSS and Javascript.", "Committed to user satisfaction."],
                 highlight: "Development"
             },
+            // {
+            //     name: "Hariom",
+            //     firstName: "Hariom",
+            //     lastName: "",
+            //     role: "Software Developer",
+            //     image: "/meet-our-team/Development%20team/hariom.png",
+            //     bio: ["Full-stack development lead.", "Innovative problem solver.", "Commitment to architectural excellence."],
+            //     highlight: "Development"
+            // },
             {
                 name: "Yash",
                 firstName: "Yash",
@@ -939,7 +939,7 @@ const Team = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[999999] flex items-center justify-center p-2 md:p-6 lg:p-10"
+                    className="fixed inset-0 z-[999999] flex items-center justify-center p-0"
                     data-lenis-prevent="true"
                     onWheel={(e) => e.stopPropagation()}
                 >
@@ -959,7 +959,7 @@ const Team = () => {
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         exit={{ y: 60, opacity: 0, scale: 0.98 }}
                         transition={{ type: "spring", damping: 35, stiffness: 180 }}
-                        className="relative w-full max-w-[1500px] h-full flex flex-col z-[1000000] bg-white/60 border border-white/80 rounded-[48px] shadow-[0_40px_120px_rgba(0,0,0,0.08)] overflow-hidden"
+                        className="relative w-full h-full flex flex-col z-[1000000] bg-white/60 shadow-2xl overflow-hidden"
                     >
                         {/* POPUP HEADER - FIXED AT TOP */}
                         <div className="p-8 md:p-12 border-b border-white/40 bg-white/20 backdrop-blur-sm">
@@ -984,9 +984,9 @@ const Team = () => {
                                     {/* EXPLICIT CLOSE OPTION */}
                                     <button
                                         onClick={() => setShowFullDirectory(false)}
-                                        className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:scale-105 active:scale-95 transition-all text-sm group"
+                                        className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3 rounded-[12px] md:rounded-2xl bg-slate-900 text-white font-bold hover:scale-105 active:scale-95 transition-all text-[11px] md:text-sm group"
                                     >
-                                        <X size={18} className="transition-transform group-hover:rotate-90" />
+                                        <X className="w-4 h-4 md:w-[18px] md:h-[18px] transition-transform group-hover:rotate-90" />
                                         Close
                                     </button>
                                 </div>
@@ -1024,9 +1024,9 @@ const Team = () => {
                                                 {category.title}
                                             </h3>
                                             <div className="flex-grow h-[1px] bg-slate-100" />
-                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{category.members.length} Members</span>
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">{category.members.length} Members</span>
                                         </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-5">
+                                        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-4 lg:gap-5">
                                             {category.members.map((member, i) => (
                                                 <MemberCard key={i} member={member} index={i} hideInfo />
                                             ))}
@@ -1085,7 +1085,7 @@ const Team = () => {
             {/* 4-Column Grid + Side CTA */}
             <div className="flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-16">
                 {/* The Leadership Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-14 flex-grow items-end">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-10 md:gap-y-14 flex-grow items-end w-full">
                     {TEAM_MEMBERS.map((member, i) => (
                         <MemberCard key={i} member={member} index={i} />
                     ))}

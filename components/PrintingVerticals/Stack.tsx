@@ -316,15 +316,14 @@ function StackingCard({ card, index, globalProgress }: { card: any, index: numbe
 
             {/* CARD CONTAINER */}
             <motion.div
-                className="relative w-full h-[90%] bg-gradient-to-b from-white to-[#f8fafc] rounded-[64px] p-12 shadow-[0_40px_120px_rgba(0,0,0,0.08)] border border-black/[0.05] flex flex-col items-center text-center justify-center pointer-events-auto"
+                className="relative w-full h-[90%] bg-gradient-to-b from-white to-[#f8fafc] rounded-[20px] p-12 shadow-[0_40px_120px_rgba(0,0,0,0.08)] border border-black/[0.05] flex flex-col items-center text-center justify-center pointer-events-auto"
                 whileHover={{
                     scale: 1.02,
                     boxShadow: "0 60px 140px rgba(0,0,0,0.12)"
                 }}
                 transition={{ duration: 0.4 }}
             >
-                {/* LARGE BACKGROUND WORD CONTAINER (with its own overflow control) */}
-                <div className="absolute inset-0 rounded-[64px] overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 rounded-[20px] overflow-hidden pointer-events-none">
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none text-black/[0.02] font-extrabold tracking-tighter leading-none whitespace-nowrap z-0"
                         style={{ fontSize: '12vw' }}

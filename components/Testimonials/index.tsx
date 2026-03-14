@@ -216,9 +216,9 @@ export default function Testimonials() {
       {/* ── 13 CARDS ── (desktop only, upper zone) */}
       <div className="absolute inset-0 pointer-events-auto hidden lg:block overflow-hidden">
         {/* Responsive scaling container for intermediate screen sizes */}
-        <div className="w-full h-full relative" style={{ 
+        <div className="w-full h-full relative" style={{
           transform: 'scale(var(--testimonials-scale, 1))',
-          transformOrigin: 'center 30%' 
+          transformOrigin: 'center 30%'
         }}>
           {CARDS.map((card, i) => (
             <TestimonialCard key={i} card={card} />
